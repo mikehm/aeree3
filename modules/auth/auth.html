@@ -1,0 +1,22 @@
+<div class="col-md-12" ng-controller="AuthCtrl">
+<section class="login-page">
+<h3>ASEREE RECRUITING SYSTEM</h3>
+<form name ="userForm" ng-submit="login()" novalidate>
+  <div class="form-group" class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
+    <label for="email">Email address</label>
+    <input type="email" class="form-control" id="email" name="email" ng-model="user.email" placeholder="Enter email">
+     <p ng-show="userForm.email.$invalid && !userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+  </div>
+  <div class="form-group" class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" name="password" ng-model="user.password" ng-minlength="8" placeholder="Password" required/>
+    <p ng-show="userForm.password.$invalid && !userForm.password.$pristine" class="help-block">Enter a valid password.</p>
+  </div>
+  <div class="form-group text-center">
+  	<a ng-href="#/list-candidates" type="submit" class="btn btn-primary" ng-disabled="userForm.$invalid">Submit</a>
+  </div>
+</form>
+	<small><a href="">Forgot your password?</a></small>
+</section>
+
+</div>

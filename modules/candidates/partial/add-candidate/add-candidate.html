@@ -1,0 +1,417 @@
+
+<div ng-include src="'header/header.html'"></div>
+<div class="col-md-12" ng-controller="AddCandidateCtrl">
+<section class="seeker-section">
+  <!--Basic PROFILE -->
+  <div class="basic_profile">
+    <ul class="nav nav-tabs">
+        <li><a ng-href="#/seeker-profile">PROFILE</a>
+        </li>
+        <li><a ng-href="#/password">PASSWORD</a>
+        </li>
+        <li><a ng-href="#/jobs">JOBS</a>
+        </li>
+    </ul>
+    <form name="profileForm" class="form-inline" ng-submit="submitPro()"
+    novalidate>
+    <div class="profile-form">
+    <div class="row">
+        <div class="row">
+            <div class="form-group col-sm-6" ng-class="{ 'has-error' : profileForm.fname.$invalid && !profileForm.fname.$pristine }">
+                <label for="fname" class="col-sm-4">First Name:</label>
+                <input type="text" class="form-control col-sm-8" id="fname" ng-model="basicData.fname" name="fname" placeholder="First Name" ng-required="true">
+                <span ng-show="profileForm.fname.$invalid && !profileForm.fname.$pristine" class="help-block col-sm-8 col-sm-offset-4"><small>First Name is required.</small></span>
+            </div>
+            <div class="form-group col-sm-6" ng-class="{ 'has-error':profileForm.lname.$invalid && !profileForm.lname.$pristine }">
+                <label for="lname" class="col-sm-4">Last Name:</label>
+                <input type="text" class="form-control col-sm-8" id="lname" name="lname" ng-model="basicData.lname" placeholder="Last Name" ng-required="true">
+                <span ng-show="profileForm.lname.$invalid && !profileForm.lname.$pristine" class="help-block col-sm-8 col-sm-offset-4"><small>Last Name is required.</small></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6"  ng-class="{ 'has-error' : 
+            profileForm.email.$invalid && !profileForm.email.$pristine }">
+                <label for="email" class="col-sm-4">Email:</label>
+                <input type="email" class="form-control col-sm-8" name="email" id="email" ng-model="basicData.email" placeholder="Email" ng-required="true">
+                <p ng-show="!profileForm.email.$pristine && profileForm.email.$invalid" class="help-block col-sm-8 col-sm-offset-4"><small>Enter a valid email.</small></p>
+            </div>
+             <div class="form-group col-sm-6">
+                <label for="linkedin" class="col-sm-4">LinkedIn:</label>
+                <input type="text" class="form-control col-sm-8" id="linkedin" name="linkedin" ng-model="basicData.linkedIn" placeholder="LinkedIn">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="phone1" class="col-sm-4">Primary phone:</label>
+                <input type="phone" class="form-control col-sm-8" id="phone1" name="phone1" ng-model="basicData.phone1" placeholder="Primary Phone">
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="phone2" class="col-sm-4">Secondary phone:</label>
+                <input type="phone" class="form-control col-sm-8" id="phone2" name="phone2"ng-model="basicData.phone2" placeholder="Secondary phone">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label class="col-sm-4">Gender: </label>
+                <span class="col-sm-8">
+                    <input type="radio" name="gender" ng-model="basicData.gender" required value="male" ng-required ="!basicData.gender">Male
+                    <input type="radio" name="gender" ng-model="basicData.gender" value="female" ng-required="!basicData.gender">Female
+                </span>
+        </div>
+        <div class="form-group col-sm-6" ng-class="{ 'has-error' : profileForm.dob.$invalid && !profileForm.dob.$pristine }">
+                <label for="bdate" class="col-sm-4">Date of Birth:</label>
+                <div class="input-group">
+                <input type="text" class="form-control col-sm-8" datepicker-popup="{{format}}" name="dob" ng-model="basicData.dob" is-open="datepickers.dob" datepicker-options="dateOptions" close-text="Close" ng-required="true" style="width:120px;"/>
+                <button class="btn btn-default" ng-click="open($event,'dob')">
+                   <i class="glyphicon glyphicon-calendar"></i></button>
+                </div>
+                <span ng-show="profileForm.dob.$invalid && !profileForm.dob.$pristine" class="help-block col-sm-8 col-sm-offset-4"><small class="pull-left">Date of birth is required.</small></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="address1" class="col-sm-4">Primary Address:</label>
+                <input type="address" class="form-control col-sm-8" name="address1" ng-model="basicData.address1" id="address1" placeholder="Address">
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="address2" class="col-sm-4">Secondary Address:</label>
+                <input type="address" class="form-control col-sm-8" id="address2" name="address2" ng-model="basicData.address2" placeholder="Address 2" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="city" class="col-sm-4">City:</label>
+                <input type="text" class="form-control col-sm-8" id="city" name="city" ng-model="basicData.city" placeholder="City" >
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="state" class="col-sm-4">State:</label>
+                <input type="text" class="form-control col-sm-8" id="state" name="state" ng-model="basicData.state" placeholder="State" >
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <label for="country" class="col-sm-3">Country:</label>
+                <ui-select ng-model="country.selected" theme="selectize" class="col-sm-8"  style="width:220px; margin-left:15px;">
+                    <ui-select-match placeholder="Select a country in the list...">
+                        {{$select.selected.countryName}}</ui-select-match>
+                        <ui-select-choices repeat="country in countries | filter: $select.search">
+                        <span ng-bind-html="country.countryName | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="postal" class="col-sm-4">Postal Code:</label>
+                <input type="text" class="form-control col-sm-8" id="postal" name="postal" ng-model="basicData.postal" placeholder="Postal Code">
+            </div>
+        </div>
+    </div>
+    </div>
+
+ <!--End BASIC PROFILE -->
+
+<!--EDUCATION-->
+
+
+<div class="education">
+    <div class="row pro-bar">
+        <p class="pro-bar-title col-sm-6">EDUCATION</p>
+        <p class="pull-right col-sm-6 text-right" style="font-style: italic">Enter Higest Level of Education</p>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6" ng-class="{ 'has-error' : profileForm.eduLevel.$invalid && !profileForm.eduLevel.$pristine }">
+            <label for="eduLevel" class="col-sm-4">Highest Level:</label>
+            <ui-select ng-model="eduLevel.selected" name="eduLevel" theme="selectize" class="col-sm-8" style="width:220px;margin-left:-20px;">
+                    <ui-select-match placeholder="Select level of education...">
+                        {{$select.selected.level}}</ui-select-match>
+                        <ui-select-choices repeat="eduLevel in eduLevels | filter: $select.search">
+                        <span ng-bind-html="eduLevel.level | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+            <span ng-show="profileForm.eduLevel.$invalid && !profileForm.eduLevel.$pristine" class="help-block col-sm-8 col-sm-offset-4"><small>Highest Level is required.</small></span>
+        </div>
+        <div class="form-group col-sm-6">
+            <label for="institution" class="col-sm-4">Institution Name:</label>
+            <input type="text" class="form-control col-sm-8 input-sm" id="institution" name="institution" ng-model="basicData.institution" placeholder="Institution">
+        </div>
+</div>
+ <!--End Education -->
+ 
+<!-- EMPLOYMENT HISTORY -->
+
+<div class="emp-history">
+    <div class="row pro-bar">
+        <p class="pro-bar-title col-sm-6">EMPLOYMENT HISTORY</p>
+        <p class="col-sm-6 text-right" style="font-style: italic">List all jobs held previously</p>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-sm-6" ng-class="{ 'has-error' : profileForm.jobTitle.$invalid && !profileForm.jobTitle.$pristine }">
+                <label for="job-title" class="col-sm-4">Job Title:</label>
+                <input type="text" class="form-control col-sm-8" id="job-title" name="jobTitle" ng-model="empHistoryData.jobTitle" placeholder="Job Title" ng-required="true">
+                <p ng-show="profileForm.jobTitle.$invalid && !profileForm.jobTitle.$pristine" class="help-block col-sm-8 col-sm-offset-4"><small>Job title is required.</small></p>
+        </div>
+        <div class="form-group col-sm-6" ng-class="{ 'has-error' : profileForm.company.$invalid && !profileForm.company.$pristine }" >
+        <label for="company" class="col-sm-4">Company:</label>
+            <input type="text" class="form-control col-sm-8" id="company" name="company" placeholder="Company" ng-model="empHistoryData.company" ng-required="true">
+            <p ng-show="profileForm.company.$invalid && !profileForm.company.$pristine" class="help-block col-sm-8 col-sm-offset-4"><small>Company name is required.</small></p>
+             
+        </div>
+    </div>
+    <div class="row">
+          <div class="form-group col-sm-6">
+            <label for="location" class="col-sm-4">Location:</label>
+            <input type="text" class="form-control col-sm-8" id="location" placeholder="Location" name="companyLocation" ng-model="empHistoryData.companyLocation">
+        </div>
+        <div class="form-group col-sm-6">
+            <label for="contact" class="col-sm-4">Contact:</label>
+            <input type="text" class="form-control col-sm-8" id="contact" placeholder="Contact" ng-model="empHistoryData.companyContact">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6" ng-class="{ 'has-error' : profileForm.prevStartDate.$invalid && !profileForm.prevStartDate.$pristine }">
+                <label class="col-sm-4">Start Date:</label>
+                <div class="input-group">
+                <input type="text" class="form-control col-sm-7" datepicker-popup="{{format}}" name="prevStartDate" ng-model="empHistoryData.prevStartDate" is-open="datepickers.prevStartDate" datepicker-options="dateOptions" close-text="Close" style="width:120px;"/>
+                    <button class="btn btn-default" ng-click="open($event,'prevStartDate')">
+                    <i class="glyphicon glyphicon-calendar"></i></button>
+                </div>
+                <span ng-show="profileForm.prevStartDate.$invalid && !profileForm.prevStartDate.$pristine" class="help-block col-sm-8 col-sm-offset-4"><small>Previous job start date is required.</small></span>
+        </div>
+
+        <div class="form-group col-sm-6" ng-class="{ 'has-error' : profileForm.prevEndDate.$invalid && !profileForm.prevEndDate.$pristine }">
+                 <label class="col-sm-4">End Date:</label>  
+                 <div class="input-group">
+                <input type="text" class="form-control col-sm-7 " datepicker-popup="{{format}}" name="prevEndDate" ng-model="empHistoryData.prevEndDate" is-open="datepickers.prevEndDate" datepicker-options="dateOptions" close-text="Close" style="width:120px;"/>
+                    <button class="btn btn-default" ng-click="open($event,'prevEndDate')">
+                    <i class="glyphicon glyphicon-calendar"></i></button>
+                </div> 
+               <span ng-show="profileForm.prevEndDate.$invalid && !profileForm.prevEndDate.$pristine" class="help-block col-sm-8 col-sm-offset-4"><small>Previous job end date is required.</small></span>
+        </div>
+    </div>
+    <div class="row">
+         <div class="col-sm-4">
+            <label class="col-sm-4" for="reason">Reason for Leaving: </label>
+        </div> 
+        <div class="col-sm-8">
+            <textarea id="reason" name="reasonLeaving" data-ng-model="empHistoryData.reasonLeaving" data-ck-editor></textarea>
+        </div>
+    </div>
+     <div class="row text-center">
+          <a type="button" class="btn btn-primary" ng-href="" ng-click="addHistory()">ADD</a>
+      </div>
+    <div class="row">
+        <div class="table-responsive">
+         <table class="table table-striped table-bordered">
+            <thead>
+                    <th>Job Title</th>
+                    <th>Company</th>
+                    <th>Date</th>
+                    <th></th>             
+            </thead>
+            <tbody>
+                 <tr ng-repeat="item in empHistory track by $index">
+                 <td>{{item.jobTitle}}</td>
+                  <td>{{item.company}}</td>
+                <td>{{item.prevStartDate |  date:"MMM yyyy"}} - {{item.prevEndDate | date:"MMM yyyy"}}</td>
+                <td><a ng-href="#/seeker-profile" ng-click="editHistory($index)">EDIT</a> | 
+                <a ng-href="#/seeker-profile" ng-click="removeHistory($index)">DELETE</a></td>
+                </tr>
+            </tbody>
+        </table> 
+       </div> 
+</div>
+</div>
+
+   <!-- BEGIN POSITION OF INTEREST -->
+
+<div class="position-interest">
+    <div class="row pro-bar">
+        <p class="pro-bar-title col-sm-6">POSITION OF INTEREST</p>
+        <p class="pull-right col-sm-6 text-right" style="font-style: italic">Enter up to 3 positions</p>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-5">
+             <label for="positionSelect" class="col-sm-4">Positions:</label>
+             <ui-select ng-model="position.selected" theme="selectize" name="positionSelect" class="col-sm-8"  style="width:220px;">
+                    <ui-select-match placeholder="Select a position...">
+                        {{$select.selected.positionType}}</ui-select-match>
+                        <ui-select-choices repeat="position in positions | filter: $select.search">
+                        <span ng-bind-html="position.positionType | highlight: $select.search"></span>
+                    </ui-select-choices>
+                </ui-select>
+        </div>
+        <div class="col-sm-2">
+            <p>Or</p>
+        </div>
+        <div class="form-group col-sm-5">             
+               <input type="text" class="form-control col-md-6" name="positionText" ng-model="position.posType" id="position"> 
+               <a ng-href="" class="add-positon btn btn-primary col-md-4 btn-sm" style="display:block; width: 100px; margin-left: 10px;" ng-click="addPosition()">ADD</a>
+        </div>
+    </div>
+    <div class="row">
+      <div class="table-responsive">
+         <table class="table table-striped table-bordered">
+            <thead>
+                <th class="col-sm-8">Positions</th>
+                <th class="col-sm-4"></th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="position in positions track by $index">
+                <td>{{position.posType}}</td>
+                <td><a ng-href="#/seeker-profile" ng-click="editPosition($index)">EDIT</a> | 
+                <a ng-href="#/seeker-profile"  ng-click="removePosition($index)">DELETE</a></td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+         <div class="form-group col-sm-6" ng-class="{ 'has-error' : profileForm.availableDate.$invalid && !profileForm.availableDate.$pristine }">
+                <label for="available-date" class="col-sm-4">Available Date:</label>
+                <div class="input-group">
+                <input type="text" class="form-control col-sm-7" datepicker-popup="{{format}}" name="availableDate" ng-model="basicData.availableDate" is-open="datepickers.availableDate" datepicker-options="dateOptions"  close-text="Close" id="available-date" style="width:120px;"/>
+                <button class="btn btn-default" ng-click="open($event,'availableDate')">
+                    <i class="glyphicon glyphicon-calendar"></i></button>
+                </div>
+                <span ng-show="profileForm.availableDate.$invalid && !profileForm.availableDate.$pristine" class="help-block col-sm-8 col-sm-offset-4"><small class="pull-left">Available date is required.</small></span>
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="expected-salary" class="col-sm-4">Expected Salary:</label>
+                <input type="text" class="form-control col-sm-8" id="expected-salary" ng-model="basicData.salary" placeholder="Expected Salary">
+            </div>
+    </div>
+</div>
+ <!--Skills -->
+
+<div class="skills">
+    <div class="row pro-bar">
+        <p class="pro-bar-title col-sm-6">SKILLS</p>
+        <p class="col-sm-6 text-right" style="font-style: italic">Enter up to 5 skills</p>
+    </div>
+    <div class="row">
+                <div class="form-group">
+                    <div class="col-sm-2">
+                        <label class="col-sm-2" for="skills">Skills:</label>
+                    </div>
+                    <div class="col-sm-6">
+                          <input type="text" id="skills" name="skill" class="form-control" ng-model="skillsData.skill">
+                    </div>
+                    <div class="col-sm-4 text-center">
+                          <a type="button" class="btn btn-primary" ng-href="" ng-click="addSkill()">ADD</a>
+                    </div>
+                </div>         
+    </div>
+    <div class="row">
+        <div class="table-responsive">
+         <table class="table table-striped table-bordered table-responsive">
+            <thead>
+                <th class="col-sm-8">Skill</th>
+                <th class="col-sm-4"></th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in skills">
+                <td>{{item.skill}}</td>
+                <td><a ng-href="#/seeker-profile" ng-click="editSkill($index)">EDIT</a> | <a ng-href="#/seeker-profile" ng-click="removeSkill($index)">DELETE</a></td>
+                </tr>
+            </tbody>
+         </table>
+        </div> 
+    </div>   
+</div>
+<!--End of skills -->
+<div class="other">
+    <div class="row pro-bar">
+        <p class="pro-bar-title col-sm-6">SUPPORTING DOCUMENTS</p>
+        <p class="col-sm-6 text-right" style="font-style: italic">Personal</p>
+    </div>
+   <div class="row">
+        <div class="col-sm-3"><span>Resume:</span></div>
+        <div class="col-sm-4">
+            <div><input type="file" name="resume" ng-model="supportingData.resume" value="UPLOAD"></div>
+        </div>        
+  </div>
+  <div class="row">
+        <div class="col-sm-3"><span>Cover Letter:</span></div>
+        <div class="col-sm-4">
+            <div><input type="file" name="coverLetter" ng-model="supportingData.coverLetter" value="UPLOAD"></div>
+        </div>        
+  </div>
+  <div class="row">
+        <div class="col-sm-3"><span>Other Docs:</span></div>
+        <div class="col-sm-4">
+            <div><input type="file" name="otherDocs" ng-model="supportingData.otherDocs" value="UPLOAD"></div>
+        </div>        
+  </div>
+</div>
+<div class="internal">
+    <div class="row pro-bar">
+        <p class="pro-bar-title col-sm-6">INTERNAL</p>
+        <p class="col-sm-6 text-right" style="font-style:italic;">Internal notes</p>
+    </div>
+<div class="row">
+    <div class="form-group">
+        <label for="status" class="col-sm-4">Source:</label>
+        <div class="col-sm-8">
+            <ui-select ng-model="source.selected" theme="selectize" class="col-sm-8"  style="width:220px;">
+                <ui-select-match placeholder="Select a source...">
+            {{$select.selected.srcType}}</ui-select-match>
+                <ui-select-choices repeat="source in sources | filter: $select.search">
+                <span ng-bind-html="source.srcType | highlight: $select.search"></span>
+            </ui-select-choices>
+        </ui-select>
+    </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+    <label for="status" class="col-sm-4">Status:</label>
+    <div class="col-sm-8">
+    <ui-select ng-model="status.selected" theme="selectize" class="col-sm-8"  style="width:220px;">
+        <ui-select-match placeholder="Select a status...">
+            {{$select.selected.statusType}}</ui-select-match>
+            <ui-select-choices repeat="status in statusArray | filter: $select.search">
+            <span ng-bind-html="status.statusType | highlight: $select.search"></span>
+        </ui-select-choices>
+    </ui-select>
+    </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group">
+        <label for="recruited" class="col-sm-4">Recruiter:</label>
+        <div class="col-sm-8">
+        <ui-select ng-model="recruiter.selected" theme="selectize" class="col-sm-8"  style="width:220px;">
+        <ui-select-match placeholder="Select a status...">
+            {{$select.selected.recruiterName}}</ui-select-match>
+            <ui-select-choices repeat="recruiter in recruiters | filter: $select.search">
+            <span ng-bind-html="recruiter.recruiterName | highlight: $select.search"></span>
+        </ui-select-choices>
+    </ui-select>
+    </div>
+    </div>
+</div>
+
+<div class="row">
+
+        <div class="col-sm-4">
+              <label for="notes">Notes:</label>
+        </div>  
+        <div class="col-sm-8">
+              <textarea id="notes" name="notes" ng-model="basicData.notes" data-ck-editor></textarea>
+        </div>
+</div>
+<hr/>
+
+<div class="add-profile text-center">
+    <button type="submit" class="btn btn-success">SAVE</button>
+    <button type="reset" class="btn btn-danger" ng-click="resetForm()">CANCEL</button>
+</div>   
+</form>
+</div>
+
+  {{user}}
+
+</section>
+
+
+</div>
