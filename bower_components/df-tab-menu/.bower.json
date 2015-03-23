@@ -1,0 +1,38 @@
+{
+  "author": "digitalfondue",
+  "name": "df-tab-menu",
+  "description": "Responsive tabs with dropdown menu",
+  "version": "0.3.0",
+  "homepage": "https://github.com/digitalfondue/df-tab-menu",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/digitalfondue/df-tab-menu.git"
+  },
+  "main": "build/df-tab-menu.min.js",
+  "dependencies": {
+    "angular": ">= 1.2.0"
+  },
+  "ignore": [
+    ".gitignore",
+    "bower.json",
+    "Gruntfile.js",
+    "LICENSE",
+    "package.json",
+    "README.md",
+    "src",
+    "node_modules",
+    "examples",
+    "config",
+    ".git"
+  ],
+  "_release": "0.3.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.3.0",
+    "commit": "e9e78be0c9ea74bb724c5cbed0a370fc45425a25"
+  },
+  "_source": "git://github.com/digitalfondue/df-tab-menu.git",
+  "_target": "~0.3.0",
+  "_originalSource": "df-tab-menu",
+  "_direct": true
+}

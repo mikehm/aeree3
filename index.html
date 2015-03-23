@@ -6,12 +6,13 @@
 	<meta charset="utf-8">
   <link href="app.less" type="text/css" rel="stylesheet/less">
 
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+  <link rel="stylesheet" href="bower_components/angular-multi-select/isteven-multi-select.css">
+  <link rel="stylesheet" href="bower_components/angular-native-picker/build/themes/default.css">
+  <link rel="stylesheet" href="bower_components/angular-native-picker/build/themes/default.date.css">
+  <link rel="stylesheet" href="bower_components/angular-native-picker/build/themes/default.time.css">
 
 
-<link rel="stylesheet" href="bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.eot">
-<link rel="stylesheet" href="bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.svg">
-<link rel="stylesheet" href="bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf">
-<link rel="stylesheet" href="bower_components/bootstrap/dist/fonts/glyphicons-halflings-regular.woff">
 </head>
 <body>
 
@@ -35,6 +36,18 @@
   <script src="bower_components/angular-ui-select/dist/select.js"></script>
   <script src="bower_components/ckeditor/ckeditor.js"></script>
   <script src="bower_components/angular-ui-grid/ui-grid.js"></script>
+  <script src="bower_components/df-tab-menu/build/df-tab-menu.min.js"></script>
+  <script src="bower_components/angular-aria/angular-aria.js"></script>
+  <script src="bower_components/angular-material/angular-material.js"></script>
+  <script src="bower_components/angular-ui-router-tabs/src/ui-router-tabs.js"></script>
+  <script src="bower_components/angular-bootstrap-show-errors/src/showErrors.js"></script>
+  <script src="bower_components/angular-multi-select/isteven-multi-select.js"></script>
+  <script src="bower_components/angular-native-picker/build/angular-datepicker.js"></script>
+ 
+
+ 
+
+
   <!-- Add New Bower Component JS Above -->
 
 
@@ -48,10 +61,11 @@
   <script src="modules/candidates/partial/list-candidates/list-candidates.js"></script>
   <script src="modules/candidates/partial/add-candidate/add-candidate.js"></script>
   <script src="shared/ckeditorDirective/ckeditor.js"></script>
+
   <!-- Add New Component JS Above -->
 
   <div>
-    <div id="content" class="container">
+    <div id="content" class="wrapper">
       <div class="row">
         <div ui-view>
         </div>

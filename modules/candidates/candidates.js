@@ -1,6 +1,6 @@
 angular.module('candidates', ['ngRoute', 'ui.bootstrap', 
     'ui.utils', 'ui.router', 'ngAnimate', 'ngSanitize', 'ui.select',
-     'ui.grid']);
+     'ui.grid','ngAria','ngMaterial']);
 
 angular.module('candidates').config(function($stateProvider) {
 

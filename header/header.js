@@ -1,4 +1,3 @@
-angular.module('aseree').controller('HeaderCtrl',function($scope){
-
-
+angular.module('aseree').controller('HeaderCtrl',function($scope, $location, $window){
+	
 });

@@ -10,7 +10,7 @@ angular.module('aseree').directive('ckEditor',function () {
             ]; 
 
             ck.config.width = '100%';
-            ck.config.height= '80%';
+            ck.config.height= '125px';
            
             ck.on('pasteState', function () {
                 $scope.$apply(function () {

@@ -54,7 +54,7 @@ module.exports = function (grunt) {
         files: [createFolderGlobs(['*.js','*.less','*.html']),'!_SpecRunner.html','!.grunt'],
         tasks: [] //all the tasks are run dynamically during the watch event handler
       }
-    },
+    },/*
     jshint: {
       main: {
         options: {
@@ -79,7 +79,7 @@ module.exports = function (grunt) {
           'temp/app.css': 'app.less'
         }
       }
-    },
+    },*/
     ngtemplates: {
       main: {
         options: {

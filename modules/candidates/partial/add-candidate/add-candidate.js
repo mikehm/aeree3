@@ -1,15 +1,11 @@
 angular.module('candidates').controller('AddCandidateCtrl', function ($scope) {
-
 /* BASIC DATA */
-
 
 $scope.basicData = {
  fname:'', lname:'', email:'', linkedIn:'', phone1:'', phone2:'', gender:'', 
- dob:'', address1:'', address2:'', city:'', state:'', postal:'', notes:''
+ dob:'', address1:'', address2:'', city:'', state:'', postal:'',availableDate:'', salary:'', notes:''
 };
-/* BASIC DATA */
-
-
+/* End BASIC DATA */
 
 /* SELECT INPUT DATA */
  $scope.editorInput = '';
@@ -73,13 +69,31 @@ $scope.empHistory = [];
 
 $scope.addHistory = function(){
 
+
+  if(!$scope.empHistoryData.jobTitle || 
+     !$scope.empHistoryData.company ||
+     !$scope.empHistoryData.prevEndDate ||
+     !$scope.empHistoryData.prevStartDate ){
+          $scope.jobRequired = true;
+          $scope.companyRequired = true;
+          $scope.startRequired = true;
+          $scope.endRequired = true;
+          return;
+    }
+
+
   $scope.empHistory.push($scope.empHistoryData);  
 
+  $scope.jobRequired = false;
+  $scope.companyRequired = false;
+  $scope.startRequired = false;
+  $scope.endRequired = false;
+
+
   $scope.empHistoryData = {
-
-     jobTitle:'', company:'', companyLocation:'', companyContact:'', prevStartDate:'', prevEndDate:'', reasonLeaving:''
-
+       jobTitle:'', company:'', companyLocation:'', companyContact:'', prevStartDate:'', prevEndDate:'', reasonLeaving:''
   };
+
 
 };
 
@@ -94,6 +108,35 @@ $scope.removeHistory = function(item) {
 
 
 /* POSITIONS DATA */
+
+$scope.work = {pos: '', ticked:true};
+
+$scope.works = [
+    {pos: "Engineer", ticked: false},
+    {pos: "CEO", ticked: false},
+    {pos: "Doctor", ticked: false},
+    {pos: "Lawyer",  ticked: false},
+    {pos: "Developer", ticked: false}
+];
+
+
+$scope.posArray = [];
+
+$scope.addP = function(){
+      $scope.posArray.push($scope.work);
+      //$scope.posArray.push($scope.inputPos);
+      $scope.work = {pos: '', ticked:true};
+};
+
+
+
+$scope.deleteP = function(index){
+
+  $scope.works[index].ticked = false;
+
+};
+
+/*
 
 $scope.position = {
   posType: ''
@@ -120,7 +163,7 @@ $scope.removePosition = function(item) {
 
 
 $scope.editPosition = function(){};
-
+*/
 
 /* END POSITIONS DATA */
 
@@ -135,8 +178,6 @@ $scope.skills  =[];
 $scope.addSkill = function(){
 
   $scope.skills.push($scope.skillsData);
-
-
 
   $scope.skillsData = {
 
@@ -173,34 +214,36 @@ $scope.userProfile = [];
 
 $scope.submitPro = function(){
 
-  //var basicData = JSON.stringify({basicData:$scope.basicData});
- /* $scope.country.selected = JSON.stringify({country:$scope.country.selected});
-  $scope.eduLevel.selected = JSON.stringify({eduLevel:$scope.eduLevel.selected});
-  $scope.empHistory = JSON.stringify({empHistory:$scope.empHistory});
-  $scope.positions = JSON.stringify({positons:$scope.positions});  
-  $scope.skills = JSON.stringify({skills:$scope.skills});
-  $scope.supportingData = JSON.stringify({supportingData: $scope.supportingData});
-  $scope.source.selected = JSON.stringify({source: $scope.source.selected});
-  $scope.status.selected = JSON.stringify({status: $scope.status.selected});
-  $scope.recruiter.selected = JSON.stringify({recruiter: $scope.recruiter.selected})
-*/
-  $scope.userProfile.push({basicData:$scope.basicData});
-  $scope.userProfile.push({country: $scope.country.selected});
-  $scope.userProfile.push({educationLevel: $scope.eduLevel.selected});
-  $scope.userProfile.push({employmentHistory:$scope.empHistory});
-  $scope.userProfile.push({positions:$scope.positions});
-  $scope.userProfile.push({skills:$scope.skills});
-  $scope.userProfile.push({supportingData:$scope.supportingData});
-  $scope.userProfile.push({source:$scope.source.selected});
-  $scope.userProfile.push({status:$scope.status.selected});
-  $scope.userProfile.push({recruiter:$scope.recruiter.selected});
+   $scope.$broadcast('show-errors-check-validity');
 
-  $scope.user = JSON.stringify({userProfile:$scope.userProfile});
 
-  $scope.basicData = {
+
+    if($scope.profileForm.$valid && ($scope.empHistory.length>0)){
+      $scope.userProfile.push({basicData:$scope.basicData});
+      $scope.userProfile.push({countryName: $scope.country.selected});
+      $scope.userProfile.push({educationLevel: $scope.eduLevel.selected});
+      $scope.userProfile.push({employmentHistory:$scope.empHistory});
+      $scope.userProfile.push({positions:$scope.positions});
+      $scope.userProfile.push({skills:$scope.skills});
+      $scope.userProfile.push({supportingData:$scope.supportingData});
+      $scope.userProfile.push({source:$scope.source.selected});
+      $scope.userProfile.push({status:$scope.status.selected});
+      $scope.userProfile.push({recruiter:$scope.recruiter.selected});
+
+      $scope.user = JSON.stringify({userProfile:$scope.userProfile});
+      $scope.resetForm() ;
+
+      if($scope.historyForm.$pristine){
+
+        $scope.show = true;
+      }
+/*
+      $scope.basicData = {
      fname:'', lname:'', email:'', linkedIn:'', phone1:'', phone2:'', gender:'', dob:'',
      address1:'', address2:'', city:'', state:'', country:'', postal:'', notes:''
-  };
+  };*/
+  }
+
 };
 
 /* END SUBMIT USER PROFILE */
@@ -214,7 +257,7 @@ $scope.submitPro = function(){
 /* RESET USER PROFILE FORM */
 
 $scope.resetForm = function(){
-
+    $scope.$broadcast('show-errors-reset');
     $scope.basicData = {};
     $scope.country.selected = "";
     $scope.eduLevel.selected = "";
@@ -229,62 +272,7 @@ $scope.resetForm = function(){
 /* END RESET USER PROFILE FORM */
 
 
-  /* DATE PICKER (Date of BIRTH (DOB) and Start Date)----------------*/
-$scope.datepickers = {
-        dob: false,
-        startDate: false,
-        prevStartDate: false,
-        prevEndDate:false
-      };
-      $scope.today = function() {
-        $scope.basicData.dob = new Date();
-        $scope.basicData.availableDate = new Date();
-        $scope.empHistoryData.prevStartDate = new Date();
-        $scope.empHistoryData.prevEndDate = new Date();
-        
-      };
-      $scope.today();
-
-      $scope.showWeeks = true;
-      $scope.toggleWeeks = function () {
-        $scope.showWeeks = ! $scope.showWeeks;
-      };
-
-      $scope.clear = function () {
-        $scope.dob = null;
-      };
-
-      // Disable weekend selection
-      $scope.disabled = function(date, mode) {
-        return ( mode === 'day' && ( date.getDay() === 0 || date.getDay() === 6 ) );
-      };
-
-      $scope.toggleMin = function() {
-        $scope.minDate = ( $scope.minDate ) ? null : new Date();
-      };
-      $scope.toggleMin();
-
-      $scope.open = function($event, which) {
-        $event.preventDefault();
-        $event.stopPropagation();
-
-        $scope.datepickers[which]= true;
-      };
-
-      $scope.dateOptions = {
-        'year-format': '"yy"',
-        'starting-day': 1
-      };
-
-      console.log('dob : ' + $scope.basicData.dob);
-      console.log('startDate : ' + $scope.basicData.availableDate);
-      console.log('prevStartDate : ' + $scope.empHistoryData.prevStartDate);
-      console.log('prevEndDate : ' + $scope.empHistoryData.prevEndDate);      
-
-      $scope.formats = ['dd-MM-yyyy','dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
-      $scope.format = $scope.formats[0];
-
- /*------------- End date picker for DOB and Start Date----------------*/
+ 
 
 
 
