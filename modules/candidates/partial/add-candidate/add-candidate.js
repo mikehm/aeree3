@@ -1,59 +1,80 @@
-angular.module('candidates').controller('AddCandidateCtrl', function ($scope) {
+  angular.module('candidates').controller('AddCandidateCtrl', function ($scope) {
 /* BASIC DATA */
 
 $scope.basicData = {
  fname:'', lname:'', email:'', linkedIn:'', phone1:'', phone2:'', gender:'', 
  dob:'', address1:'', address2:'', city:'', state:'', postal:'',availableDate:'', salary:'', notes:''
 };
+
 /* End BASIC DATA */
 
 /* SELECT INPUT DATA */
- $scope.editorInput = '';
- $scope.country = {};
-  $scope.countries = [
-    {countryName: 'Ethiopia'},
-    {countryName: 'Canada'},
-    {countryName: 'England'},
-    {countryName: 'Sweden'}
-    ];
-  $scope.eduLevel = {};
-  $scope.eduLevels = [
+    $scope.country = null;
+  
+    $scope.countryConfig = {
+    options: [{value: "Ethiopia", text: 'Ethiopia'}, 
+    {value: "Canada", text:'Canada'},
+    {value: "England", text:'England'},
+    {value: "USA", text:'USA'}
+    
+    ],
+    create: true,
+    sortField: 'text',
+    maxItems: 1,
+  }
+  $scope.education = null;
+   $scope.educationConfig = {
+    options: [{value: "Diploma", text: 'Diploma'}, 
+    {value: "Certificate", text:'Certificate'},
+    {value: "PhD", text:'PhD'},
+    {value: "Masters", text:'Masters'}
+    
+    ],
+    create: true,
+    sortField: 'text',
+    maxItems: 1,
+  }
 
-    {level: "Certificate"}, 
-    {level: "Diploma"},
-    {level: "Degree"},
-    {level: "Masters"},
-    {level: "PhD"}
-  ];
-/*
-  $scope.position = {};
-  $scope.positions = [
-    {positionType: "CEO"}, 
-    {positionType: "Doctor"},
-    {positionType: "Lawyer"}
-  ];
 
-  */
+  $scope.source = null;
+   $scope.sourceConfig = {
+    options: [{value: "Online", text: 'Online'}, 
+    {value: "walk-in", text:'Walk-In'},
+    {value: "Email", text:'Email'},
+    {value: "Fax", text:'Fax'}
+    
+    ],
+    create: true,
+    sortField: 'text',
+    maxItems: 1,
+  }
 
-  $scope.source = {};
-  $scope.sources = [
-    {srcType: 'Online'},
-    {srcType: 'Walk-In'},
-    {srcType: 'Email'},
-    {srcType: 'Fax'}
-  ];
-  $scope.status = {};
-  $scope.statusArray = [
-    {statusType: 'Active'},
-    {statusType: 'In-Active'},
-    {statusType: 'In-progress'}
-  ];
-  $scope.recruiter = {};
-  $scope.recruiters = [
-    {recruiterName: 'Alemitu Mamo'},
-    {recruiterName: 'Mamo Killo'},
-    {recruiterName: 'Gemetchu Feleke'}
-  ];
+   $scope.status = null;
+   $scope.statusConfig = {
+    options: [{value: "Active", text: 'Active'}, 
+    {value: "In-Active", text:'In-Active'},
+    {value: "In-Progress", text:'In-Progress'}
+    
+    ],
+    create: true,
+    sortField: 'text',
+    maxItems: 1,
+  }
+  
+   $scope.recruiter = null;
+   $scope.recruiterConfig = {
+    options: [{value: "Alemitu Chane", text: 'Alemitu Chane'}, 
+    {value: "Bill Gates", text:'Bill Gates'},
+    {value: "Mamo Qilo", text:'Mamo Qilo'},
+    {value: "Teddy Afro", text:'Teddy Afro'}
+    
+    ],
+    create: true,
+    sortField: 'text',
+    maxItems: 1,
+  }
+
+
 
 /* END DATA ENTERED VIA SELECT INPUT*/
 
@@ -109,66 +130,50 @@ $scope.removeHistory = function(item) {
 
 /* POSITIONS DATA */
 
-$scope.work = {pos: '', ticked:true};
-
-$scope.works = [
-    {pos: "Engineer", ticked: false},
-    {pos: "CEO", ticked: false},
-    {pos: "Doctor", ticked: false},
-    {pos: "Lawyer",  ticked: false},
-    {pos: "Developer", ticked: false}
-];
-
-
-$scope.posArray = [];
-
-$scope.addP = function(){
-      $scope.posArray.push($scope.work);
-      //$scope.posArray.push($scope.inputPos);
-      $scope.work = {pos: '', ticked:true};
-};
-
-
-
-$scope.deleteP = function(index){
-
-  $scope.works[index].ticked = false;
-
-};
-
-/*
-
-$scope.position = {
-  posType: ''
-};
-
-$scope.positions = [];
-
-$scope.addPosition = function(){
-
-  $scope.positions.push($scope.position);
-
-  $scope.position = {
-    posType: ''
+$scope.positions = null;
+   $scope.positionConfig = {
+    options: [{value: "Doctor", text: 'Doctor'}, 
+    {value: "Tech Director", text:'Tech Director'},
+    {value: "Lawyer", text:'Lawyer'},
+    {value: "Teacher", text:'Teacher'}
+    
+    ],
+    create: true,
+    sortField: 'text',
+    maxItems: 3,
+  }
+  
+  $scope.deletePos = function(index){
+        $scope.positions.splice(index, 1);
+  
   };
-  
-};
-  
-
-$scope.removePosition = function(item) {
-
-  $scope.positions.splice(item,1);
-};
 
 
-
-$scope.editPosition = function(){};
-*/
 
 /* END POSITIONS DATA */
 
 
 /* SKILLS DATA */
+
+
+$scope.skills = null;
+   $scope.skillConfig = {
+    options: [{value: "", text: ''} 
+    ],
+    create: true,
+    sortField: 'text',
+    maxItems: 5,
+  }
+  
+  $scope.deleteSkills = function(index){
+        $scope.skills.splice(index, 1);
+  
+  };
+
+
+
+
+/*
 $scope.skillsData = {
    skill:''
 };
@@ -192,9 +197,11 @@ $scope.removeSkill = function(item){
   $scope.skills.splice(item,1);
 };
 
+
 $scope.editSkill = function(){
 
 };
+*/
 
 /* END SKILLS DATA*/
 
@@ -216,19 +223,17 @@ $scope.submitPro = function(){
 
    $scope.$broadcast('show-errors-check-validity');
 
-
-
     if($scope.profileForm.$valid && ($scope.empHistory.length>0)){
       $scope.userProfile.push({basicData:$scope.basicData});
-      $scope.userProfile.push({countryName: $scope.country.selected});
-      $scope.userProfile.push({educationLevel: $scope.eduLevel.selected});
+      $scope.userProfile.push({country: $scope.country});
+      $scope.userProfile.push({education: $scope.education});
       $scope.userProfile.push({employmentHistory:$scope.empHistory});
       $scope.userProfile.push({positions:$scope.positions});
       $scope.userProfile.push({skills:$scope.skills});
       $scope.userProfile.push({supportingData:$scope.supportingData});
-      $scope.userProfile.push({source:$scope.source.selected});
-      $scope.userProfile.push({status:$scope.status.selected});
-      $scope.userProfile.push({recruiter:$scope.recruiter.selected});
+      $scope.userProfile.push({source:$scope.source});
+      $scope.userProfile.push({status:$scope.status});
+      $scope.userProfile.push({recruiter:$scope.recruiter});
 
       $scope.user = JSON.stringify({userProfile:$scope.userProfile});
       $scope.resetForm() ;
@@ -246,12 +251,6 @@ $scope.submitPro = function(){
 
 };
 
-/* END SUBMIT USER PROFILE */
-
-
-/* Service userProfile */
-
-/* End service */
 
 
 /* RESET USER PROFILE FORM */
@@ -259,14 +258,14 @@ $scope.submitPro = function(){
 $scope.resetForm = function(){
     $scope.$broadcast('show-errors-reset');
     $scope.basicData = {};
-    $scope.country.selected = "";
-    $scope.eduLevel.selected = "";
+    $scope.country = "";
+    $scope.education = "";
     $scope.empHistory = [];
     $scope.positions = [];
     $scope.skills = [];
-    $scope.source.selected = "";
-    $scope.status.selected = "";
-    $scope.recruiter.selected = "";
+    $scope.source = "";
+    $scope.status = "";
+    $scope.recruiter = "";
 
 };
 /* END RESET USER PROFILE FORM */

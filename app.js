@@ -6,6 +6,7 @@ angular.module('aseree', ['ngRoute', 'ui.bootstrap',
      'ui.bootstrap.showErrors',
      'isteven-multi-select',
      'angular-datepicker',
+     'selectize',
      'candidates']);
 
 angular.module('aseree').config(function($stateProvider, $urlRouterProvider) {
