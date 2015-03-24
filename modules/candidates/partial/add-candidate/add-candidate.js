@@ -168,7 +168,7 @@ $scope.skills = null;
   
   $scope.deleteSkills = function(index){
         $scope.skills.splice(index, 1);
-  
+
   };
 
 /* END SKILLS DATA*/
