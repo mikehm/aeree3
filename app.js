@@ -4,7 +4,6 @@ angular.module('aseree', ['ngRoute', 'ui.bootstrap',
      'ui.router.tabs',
      'digitalfondue.dftabmenu',
      'ui.bootstrap.showErrors',
-     'isteven-multi-select',
      'angular-datepicker',
      'selectize',
      'candidates']);

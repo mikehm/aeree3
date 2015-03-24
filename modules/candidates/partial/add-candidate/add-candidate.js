@@ -2,6 +2,31 @@
 /* BASIC DATA */
 
 
+
+  $scope.profileTab = function(){
+
+    $scope.active1 = 'active';
+    $scope.active2 = '';
+    $scope.active3 = '';
+
+
+  };
+
+  $scope.passwordTab = function(){
+
+    $scope.active1 = '';
+    $scope.active2 = "active";
+    $scope.active3 = '';
+  };
+
+  $scope.jobsTab = function(){
+
+    $scope.active1 = '';
+    $scope.active2 = '';
+    $scope.active3 = "active" ;
+  };
+
+
 $scope.basicData = {
  fname:'', lname:'', email:'', linkedIn:'', phone1:'', phone2:'', gender:'', 
  dob:'', address1:'', address2:'', city:'', state:'', postal:'',availableDate:'', salary:'', notes:''
