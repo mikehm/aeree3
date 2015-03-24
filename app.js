@@ -23,6 +23,10 @@ angular.module('aseree').config(function($stateProvider, $urlRouterProvider) {
         url: '/jobs',
         templateUrl: 'modules/jobs/jobs.html'
     });
+    $stateProvider.state('main-partial', {
+        url: '/main',
+        templateUrl: 'main/main-partial.html'
+    });
     /* Add New States Above */
     $urlRouterProvider.otherwise('/auth');
 

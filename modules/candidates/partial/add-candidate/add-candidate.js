@@ -9,7 +9,6 @@
     $scope.active2 = '';
     $scope.active3 = '';
 
-
   };
 
   $scope.passwordTab = function(){
