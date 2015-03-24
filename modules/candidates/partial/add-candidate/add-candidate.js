@@ -109,6 +109,17 @@ $scope.empHistoryData = {
 
 $scope.empHistory = [];
 
+/* Emplyment history validation states */
+
+$scope.empHistoryVal = function(bool){
+
+        $scope.jobRequired = bool;
+        $scope.companyRequired = bool;
+        $scope.startRequired = bool;
+        $scope.endRequired = bool;
+
+}
+
 $scope.addHistory = function(){
 
 
@@ -116,25 +127,24 @@ $scope.addHistory = function(){
      !$scope.empHistoryData.company ||
      !$scope.empHistoryData.prevEndDate ||
      !$scope.empHistoryData.prevStartDate ){
-          $scope.jobRequired = true;
-          $scope.companyRequired = true;
-          $scope.startRequired = true;
-          $scope.endRequired = true;
-          return;
-    }
+
+      $scope.empHistoryVal(true);
+         
+       return;
+
+       if($scope.empHistory < 1){
+          $scope.empHistoryVal(true);
+        }
+  }
 
 
-  $scope.empHistory.push($scope.empHistoryData);  
+    $scope.empHistory.push($scope.empHistoryData);  
 
-  $scope.jobRequired = false;
-  $scope.companyRequired = false;
-  $scope.startRequired = false;
-  $scope.endRequired = false;
-
-
-  $scope.empHistoryData = {
+    $scope.empHistoryVal(false);
+       
+    $scope.empHistoryData = {
        jobTitle:'', company:'', companyLocation:'', companyContact:'', prevStartDate:'', prevEndDate:'', reasonLeaving:''
-  };
+    };
 
 
 };
@@ -210,6 +220,10 @@ $scope.userProfile = [];
 $scope.submitPro = function(){
 
    $scope.$broadcast('show-errors-check-validity');
+
+    if($scope.empHistory.length < 1){
+        $scope.empHistoryVal(true); 
+    }
 
     if($scope.profileForm.$valid && ($scope.empHistory.length>0)){
       $scope.userProfile.push({basicData:$scope.basicData});

@@ -131,12 +131,12 @@
     </div>
    <section class="emp-history-sec">
     <div class="row">
-        <div class="form-group col-sm-6" show-errors='{showSuccess: true}'>
+        <div class="form-group col-sm-6" >
                 <label for="job-title" class="col-sm-4 required-field">Job Title:</label>
                 <input type="text" class="form-control col-sm-8" id="job-title" name="jobTitle" ng-model="empHistoryData.jobTitle" placeholder="Job Title">
                <p class="help-block col-sm-8 col-sm-offset-4" ng-show="jobRequired"><small>Job Title is required</small></p>
         </div>
-        <div class="form-group col-sm-6" show-errors='{showSuccess: true}'>
+        <div class="form-group col-sm-6" >
         <label for="company" class="col-sm-4 required-field">Company:</label>
             <input type="text" class="form-control col-sm-8" id="company" name="company" placeholder="Company" ng-model="empHistoryData.company">
            <p class="help-block col-sm-8 col-sm-offset-4" ng-show="companyRequired"><small>Company name is required</small></p>
@@ -154,13 +154,13 @@
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-sm-6" show-errors='{showSuccess: true}'>
+        <div class="form-group col-sm-6" >
                  <label class="col-sm-4 required-field">Start Date:</label>  
                 <input type="text" pick-a-date="date" class="form-control col-sm-8" name="prevStartDate" ng-model="empHistoryData.prevStartDate" pick-a-date-options="{ format: 'yyyy-mm-dd' }" placeholder="Start Date"/>
                 <p class="help-block col-sm-8 col-sm-offset-4" ng-show="startRequired"><small class="pull-left">Start date is required</small></p>        
         </div>
 
-        <div class="form-group col-sm-6" show-errors='{showSuccess: true}'>
+        <div class="form-group col-sm-6" >
                 <label class="col-sm-4 required-field">End Date:</label> 
                 <input type="text" pick-a-date="date" class="form-control col-sm-8" name="prevEndDate"  ng-model="empHistoryData.prevEndDate"  pick-a-date-options="{ format: 'yyyy-mm-dd' }" placeholder="End Date"/>
                 <p class="help-block col-sm-8 col-sm-offset-4" ng-show="endRequired"><small class="pull-left">End date is required</small></p>        
@@ -194,8 +194,8 @@
                  <td>{{item.jobTitle}}</td>
                   <td>{{item.company}}</td>
                 <td>{{item.prevStartDate |  date:"MMM yyyy"}} - {{item.prevEndDate | date:"MMM yyyy"}}</td>
-                <td><a ng-href="#/seeker-profile" ng-click="editHistory($index)">EDIT</a> | 
-                <a ng-href="#/seeker-profile" ng-click="removeHistory($index)">DELETE</a></td>
+                <td><a ng-href="#/add-candidate" ng-click="editHistory($index)">EDIT</a> | 
+                <a ng-href="#/add-candidate" ng-click="removeHistory($index)">DELETE</a></td>
                 </tr>
             </tbody>
         </table> 
