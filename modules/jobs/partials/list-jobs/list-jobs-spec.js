@@ -1,12 +1,12 @@
-describe('JobsCtrl', function() {
+describe('ListJobsCtrl', function() {
 
-	beforeEach(module('aseree'));
+	beforeEach(module('jobs'));
 
 	var scope,ctrl;
 
     beforeEach(inject(function($rootScope, $controller) {
       scope = $rootScope.$new();
-      ctrl = $controller('JobsCtrl', {$scope: scope});
+      ctrl = $controller('ListJobsCtrl', {$scope: scope});
     }));	
 
 	it('should ...', inject(function() {

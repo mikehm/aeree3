@@ -1,9 +1,7 @@
-<div ng-include src="'header/header.html'"></div>
-<div  class="col-md-12" ng-controller="ListCandidatesCtrl">
 
-<p>,</p>
-<div class="cand">
-<h2>Candidates</h2>
+<div ng-include src="'header/header.html'"></div>
+<div class="col-md-12" ng-controller="ListJobsCtrl">
+<h1>Jobs</h2>
 <div class="advanced-search">
 <div class="row">
     <div class="col-sm-6"></div>
@@ -18,9 +16,7 @@
       </span>
     </div><!-- /input-group -->
   </div>
-
 </div>
-
 <form name="search-form" class="form-inline" ng-show="displayForm">
     <div class="row">
         <div class="form-group col-sm-6">
@@ -42,6 +38,19 @@
                 <selectize class="col-sm-8" id="another-category" config="another_categoryConfig" ng-model="another-category" style="width:220px;" placeholder="Select a category..."></selectize>
         </div>
         </div>
+         <div class="row">
+        <div class="form-group col-sm-6"> 
+                <label for="position" class="col-sm-4">Posting date range</label>
+                <input type="text" pick-a-date="date" class="form-control col-sm-8" placeholder="From..." pick-a-date-options="options" />
+      
+            </div>
+         <div class="form-group col-sm-6"> 
+                
+                <span class="col-sm-4"></span>
+                <input type="text" pick-a-date="date" class="form-control col-sm-8" placeholder="To.." pick-a-date-options="options" />
+
+        </div>
+        </div>
         <div class="row">
             <div class="col-sm-6"></div>
             <div class="col-sm-6 text-center">
@@ -54,25 +63,23 @@
    
 </form>
 </div>
-<table class="table table-striped table-bordered seeker-table">
-    <thead>
-    <tr>
-        <th>Name</th>
-        <th>Current Status</th>
-        <th>Joined Date</th>
-        <th>Check</th>
-    </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="seeker in jobSeekers | filter:searchSeeker">
-        <td>{{seeker.name}}</td>
-        <td>{{seeker.currentStatus}}</td>
-        <td>{{seeker.joinedDate}}</td>
-        <td><input type="checkbox" ng-check="seeker.id"></td>
-        
-        </tr>
-     </tbody>
+
+
+<table class="table table-bordered">
+	<thead>
+		<th>Job Title</th>
+		<th>Recruiter</th>
+		<th>Posting Date</th>
+		<th>Employer Contact</th>
+		<th>Employer</th>
+		<th>Status</th>
+		<th></th>
+	</thead>
+	<tbody>
+		
+	</tbody>
+
 </table>
-    
-</div>
+
+
 </div>

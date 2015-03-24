@@ -1,0 +1,37 @@
+<div ng-include src="'header/header.html'"></div>
+<div class="col-md-12 add-jobs " ng-controller="AddJobsCtrl">
+
+
+<form class="form-inline add-jobs-form">
+	<div class="row">
+		<div class="form-group col-sm-6">
+                <label for="job-title" class="required-field col-sm-4">Job Title:</label>
+                <input type="text" class="form-control col-sm-8" id="job-title" 
+                ng-model="jobTitle" name="job-title" placeholder="Job Title" ng-required="true">
+         
+		</div>
+    </div>
+    <div class="row">
+    	<div class="form-group col-sm-6"> 
+                <label for="company" class="col-sm-4">Company Name:</label>
+                <selectize placeholder='Select a company...' class="col-sm-8" id="company" config="companyConfig" ng-model="country" style="width:220px;"></selectize>
+		</div>
+	</div>
+	<div class="row">
+	    <div class="form-group col-sm-6"> 
+  	             <label for="manager" class="col-sm-4">Hiring Manager:</label>
+                <selectize placeholder='Select a hiring manager...' class="col-sm-8" id="manager" config="countryConfig" ng-model="country" style="width:220px;"></selectize>
+    	</div>
+    </div>
+    <div class="row">
+		<div class="form-group col-sm-6">
+                <label for="location" class="required-field col-sm-4">Location:</label>
+                <input type="text" class="form-control col-sm-8" id="location" 
+                ng-model="location" name="location" placeholder="Location" ng-required="true">
+         
+		</div>
+    </div>
+
+    </div>
+
+</form>

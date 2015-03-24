@@ -23,6 +23,10 @@
       {
         "name": "candidates",
         "file": "modules/candidates/candidates.js"
+      },
+      {
+        "name": "jobs",
+        "file": "modules/jobs/jobs.js"
       }
     ]
   }
