@@ -1,20 +1,16 @@
   angular.module('candidates').controller('AddCandidateCtrl', function ($scope) {
 /* BASIC DATA */
 
-
-
   $scope.profileTab = function(){
-
     $scope.active1 = 'active';
     $scope.active2 = '';
     $scope.active3 = '';
-
   };
 
   $scope.passwordTab = function(){
 
     $scope.active1 = '';
-    $scope.active2 = "active";
+    $scope.active2 = 'active';
     $scope.active3 = '';
   };
 
@@ -22,7 +18,7 @@
 
     $scope.active1 = '';
     $scope.active2 = '';
-    $scope.active3 = "active" ;
+    $scope.active3 = 'active' ;
   };
 
 
