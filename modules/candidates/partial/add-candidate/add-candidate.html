@@ -62,7 +62,7 @@
         </div>
             <div class="form-group col-sm-6" show-errors='{showSuccess: true}'>
                 <label for="bdate" class="col-sm-4 required-field">Date of Birth:</label>          
-                 <input type="text" pick-a-date="date" class="form-control col-sm-8" name="dob" ng-model="basicData.dob" pick-a-date-options="{ format: 'yyyy-mm-dd' }" ng-required="true"  />    
+                 <input type="text" pick-a-date="date" class="form-control col-sm-8" name="dob" ng-model="basicData.dob" pick-a-date-options="{ format: 'yyyy-mm-dd' }" ng-required="true"  placeholder="Date of birth"/>    
                 <p class="help-block col-sm-8 col-sm-offset-4" ng-if="profileForm.dob.$error.required" ><small class="pull-left">Date of birth is required.</small></p>
             </div>
         </div>
@@ -156,13 +156,13 @@
     <div class="row">
         <div class="form-group col-sm-6" show-errors='{showSuccess: true}'>
                  <label class="col-sm-4 required-field">Start Date:</label>  
-                <input type="text" pick-a-date="date" class="form-control col-sm-8" name="prevStartDate" ng-model="empHistoryData.prevStartDate" pick-a-date-options="{ format: 'yyyy-mm-dd' }" />
+                <input type="text" pick-a-date="date" class="form-control col-sm-8" name="prevStartDate" ng-model="empHistoryData.prevStartDate" pick-a-date-options="{ format: 'yyyy-mm-dd' }" placeholder="Start Date"/>
                 <p class="help-block col-sm-8 col-sm-offset-4" ng-show="startRequired"><small class="pull-left">Start date is required</small></p>        
         </div>
 
         <div class="form-group col-sm-6" show-errors='{showSuccess: true}'>
                 <label class="col-sm-4 required-field">End Date:</label> 
-                <input type="text" pick-a-date="date" class="form-control col-sm-8" name="prevEndDate"  ng-model="empHistoryData.prevEndDate"  pick-a-date-options="{ format: 'yyyy-mm-dd' }" />
+                <input type="text" pick-a-date="date" class="form-control col-sm-8" name="prevEndDate"  ng-model="empHistoryData.prevEndDate"  pick-a-date-options="{ format: 'yyyy-mm-dd' }" placeholder="End Date"/>
                 <p class="help-block col-sm-8 col-sm-offset-4" ng-show="endRequired"><small class="pull-left">End date is required</small></p>        
         </div>
     </div>
@@ -235,7 +235,7 @@
     <div class="row">
            <div class="form-group col-sm-6">
                 <label for="available-date" class="col-sm-4">Available Date:</label>
-                <input type="text" pick-a-date="date" class="form-control col-sm-8" name="availableDate" date-time ng-model="basicData.availableDate"   pick-a-date-options="{ format: 'yyyy-mm-dd' }"  />
+                <input type="text" pick-a-date="date" class="form-control col-sm-8" name="availableDate" date-time ng-model="basicData.availableDate" pick-a-date-options="{ format: 'yyyy-mm-dd' }"  placeholder="Date available"/>
             </div>
             <div class="form-group col-sm-6">
                 <label for="expected-salary" class="col-sm-4">Expected Salary:</label>
