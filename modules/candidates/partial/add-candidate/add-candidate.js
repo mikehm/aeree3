@@ -1,6 +1,7 @@
   angular.module('candidates').controller('AddCandidateCtrl', function ($scope) {
 /* BASIC DATA */
 
+
 $scope.basicData = {
  fname:'', lname:'', email:'', linkedIn:'', phone1:'', phone2:'', gender:'', 
  dob:'', address1:'', address2:'', city:'', state:'', postal:'',availableDate:'', salary:'', notes:''
@@ -170,39 +171,6 @@ $scope.skills = null;
   
   };
 
-
-
-
-/*
-$scope.skillsData = {
-   skill:''
-};
-
-$scope.skills  =[];
-
-$scope.addSkill = function(){
-
-  $scope.skills.push($scope.skillsData);
-
-  $scope.skillsData = {
-
-    skill:''
-  
-  };
-
-};
-
-$scope.removeSkill = function(item){
-
-  $scope.skills.splice(item,1);
-};
-
-
-$scope.editSkill = function(){
-
-};
-*/
-
 /* END SKILLS DATA*/
 
 
@@ -242,16 +210,9 @@ $scope.submitPro = function(){
 
         $scope.show = true;
       }
-/*
-      $scope.basicData = {
-     fname:'', lname:'', email:'', linkedIn:'', phone1:'', phone2:'', gender:'', dob:'',
-     address1:'', address2:'', city:'', state:'', country:'', postal:'', notes:''
-  };*/
   }
 
 };
-
-
 
 /* RESET USER PROFILE FORM */
 
@@ -267,12 +228,7 @@ $scope.resetForm = function(){
     $scope.status = "";
     $scope.recruiter = "";
 
-};
+  };
 /* END RESET USER PROFILE FORM */
 
-
- 
-
-
-
-  });
+});

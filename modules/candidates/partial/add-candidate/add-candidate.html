@@ -29,15 +29,14 @@
                 <p class="help-block col-sm-8 col-sm-offset-4" ng-if="profileForm.lname.$error.required"><small>Last Name is required</small></p>
             </div>
         </div>
-        <div class="row">
-            <div class="form-group col-sm-6" ng-class="{ 'has-error': profileForm.email.$invalid }" >
+        <div class="row"> 
+            <div class="form-group col-sm-6" show-errors='{showSuccess: true}'>
                 <label for="email" class="col-sm-4 required-field">Email:</label>
                 <input type="email" class="form-control col-sm-8" name="email" id="email" ng-model="basicData.email" placeholder="Email" ng-required="true">
                 <p class="help-block col-sm-8 col-sm-offset-4" ng-if="profileForm.email.$error.required"><small>Email is required.</small></p>
                  <p class="help-block col-sm-8 col-sm-offset-4" ng-if="profileForm.email.$error.email"><small>Enter a valid email.</small></p>        
-
             </div>
-             <div class="form-group col-sm-6">
+            <div class="form-group col-sm-6">
                 <label for="linkedin" class="col-sm-4">LinkedIn:</label>
                 <input type="text" class="form-control col-sm-8" id="linkedin" name="linkedin" ng-model="basicData.linkedIn" placeholder="LinkedIn">             
             </div>
@@ -103,7 +102,6 @@
 
 <!--EDUCATION-->
 
-
 <div class="education">
     <div class="row pro-bar">
         <p class="pro-bar-title col-sm-6">EDUCATION</p>
@@ -112,8 +110,7 @@
     <div class="row">
         <div class="form-group col-sm-6" show-errors='{showSuccess: true}'>
             <label for="education" class="col-sm-4 required-field">Highest Level:</label>
-            <selectize placeholder='Select an education level...' id="education" name="education" config="educationConfig" ng ng-model="education"
-            class="col-sm-8" style="width:220px;"></selectize>
+            <selectize placeholder='Select an education level...' id="education" name="education" config="educationConfig" ng ng-model="education" class="col-sm-8" style="width:220px;" ng-required="true"></selectize>
             <p class="help-block col-sm-8 col-sm-offset-4" ng-if="profileForm.education.$error.required"><small>Highest Level is required.</small></p>
         </div>
 
@@ -123,9 +120,6 @@
         </div>
 </div>
  <!--End Education -->
-
-
-
  
 <!-- EMPLOYMENT HISTORY -->
 
@@ -208,7 +202,6 @@
 </div>
 </div>
 
-
    <!-- BEGIN POSITION OF INTEREST -->
 
 <div class="position-interest">
@@ -249,7 +242,8 @@
             </div>
     </div>
 </div>
- <!--Skills -->
+
+<!--Skills -->
 
 <div class="skills">
     <div class="row pro-bar">
@@ -257,11 +251,11 @@
         <p class="col-sm-6 text-right" style="font-style: italic">Enter up to 5 skills</p>
     </div>
     <div class="row">
-                <div class="form-group col-sm-6">
-                    <label for="skills" class="col-sm-4">Skills</label>
-                     <selectize placeholder= 'Select or enter upto 5 skills...' id="skills" theme="selectize" class="col-sm-8" config="skillConfig" ng-model="skills"></selectize>
-                </div>         
-    </div>
+    <div class="form-group col-sm-6">
+        <label for="skills" class="col-sm-4">Skills</label>
+        <selectize placeholder= 'Select or enter upto 5 skills...' theme="selectize" class="col-sm-8" id="skills" config="skillConfig" ng-model="skills"></selectize>
+    </div>      
+    </div>        
     <div class="row">
         <div class="table-responsive">
          <table class="table table-striped table-bordered table-responsive">
