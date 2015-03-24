@@ -5,7 +5,7 @@
   <!--Basic PROFILE -->
    <div class="basic_profile">
     <ul class="nav nav-tabs nav-justified">
-        <li ng-click="profileTab()" class="{{active1}}"><a ui-sref="#/add-candidate">PROFILE</a>
+        <li ng-click="profileTab()" class="{{active1}} "><a ui-sref="#/add-candidate">PROFILE</a>
         </li>
         <li ng-click="passwordTab()" class="{{active2}}"><a ui-sref="#/password">PASSWORD</a>
         </li>
@@ -14,6 +14,8 @@
     </ul>
     <form name="profileForm" class="form-inline" ng-submit="submitPro()"
     novalidate>
+
+    <div class="full-form">
     <div class="profile-form">
     <div class="row">
         <div class="row">
@@ -345,6 +347,7 @@
 </form>
 </div>
 
+</div>
   {{user}}
 
 </section>
