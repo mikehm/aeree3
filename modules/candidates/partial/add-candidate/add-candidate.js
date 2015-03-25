@@ -226,8 +226,20 @@ $scope.submitPro = function(){
     }
 
     if($scope.profileForm.$valid && ($scope.empHistory.length>0)){
-      $scope.userProfile.push({basicData:$scope.basicData});
-      $scope.userProfile.push({country: $scope.country});
+      
+      $scope.userProfile.push(
+        {basicData:$scope.basicData},
+        {country: $scope.country},
+        {education: $scope.education},
+        {employmentHistory:$scope.empHistory},
+        {positions:$scope.positions}, 
+        {skills:$scope.skills},
+        {supportingData:$scope.supportingData},
+        {source:$scope.source},
+        {status:$scope.status},
+        {recruiter:$scope.recruiter}
+       );
+      /*$scope.userProfile.push({country: $scope.country});
       $scope.userProfile.push({education: $scope.education});
       $scope.userProfile.push({employmentHistory:$scope.empHistory});
       $scope.userProfile.push({positions:$scope.positions});
@@ -236,8 +248,8 @@ $scope.submitPro = function(){
       $scope.userProfile.push({source:$scope.source});
       $scope.userProfile.push({status:$scope.status});
       $scope.userProfile.push({recruiter:$scope.recruiter});
-
-      $scope.user = JSON.stringify({userProfile:$scope.userProfile});
+      */
+      $scope.user = angular.toJson({userProfile:$scope.userProfile})
       $scope.resetForm() ;
 
       if($scope.historyForm.$pristine){
