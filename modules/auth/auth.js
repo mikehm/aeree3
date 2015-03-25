@@ -1,5 +1,6 @@
 angular.module('aseree').controller('AuthCtrl', function ($scope) {
-  	  $scope.user = { email:'', password: ''};
-	  $scope.login = function(){
+  	 
+  	 this.user = { email:'', password: ''};
+	 this.login = function(){
   };
 });

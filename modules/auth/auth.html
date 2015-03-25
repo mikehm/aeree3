@@ -1,10 +1,10 @@
-<div class="col-md-12" ng-controller="AuthCtrl">
+<div class="col-md-12" ng-controller="AuthCtrl as signup">
 <section class="login-page">
 <h3>ASEREE RECRUITING SYSTEM</h3>
-<form name ="userForm" ng-submit="login()" novalidate>
+<form name ="userForm" ng-submit="signup.login()" novalidate>
   <div class="form-group" class="form-group" ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }">
     <label class="required-field"  for="email">Email address</label>
-    <input type="email" class="form-control" id="email" name="email" ng-model="user.email" placeholder="Enter email" ng-required="true">
+    <input type="email" class="form-control" id="email" name="email" ng-model="signup.user.email" placeholder="Enter email" ng-required="true">
     <div class="errors" 
     ng-show="userForm.email.$dirty && userForm.email.$invalid">
       <small class="error" ng-show="userForm.email.$error.required">Please enter your email.</small>
@@ -14,7 +14,7 @@
   </div>
   <div class="form-group" class="form-group" ng-class="{ 'has-error' : userForm.password.$invalid && !userForm.password.$pristine }">
     <label class="required-field"  for="password">Password</label>
-    <input type="password" class="form-control" id="password" name="password" ng-model="user.password" ng-minlength="5" ng-maxlength="10" placeholder="Password" ng-required="true"/> 
+    <input type="password" class="form-control" id="password" name="password" ng-model="signup.user.password" ng-minlength="5" ng-maxlength="10" placeholder="Password" ng-required="true"/> 
     <div class="errors" 
     ng-show="userForm.password.$dirty && userForm.password.$invalid">
       <small class="error"ng-show="userForm.password.$error.required">Please input a password</small>

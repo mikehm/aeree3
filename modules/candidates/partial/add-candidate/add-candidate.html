@@ -281,22 +281,28 @@
         <p class="col-sm-6 text-right" style="font-style: italic">Personal</p>
     </div>
    <div class="row">
-        <div class="col-sm-3"><span>Resume:</span></div>
-        <div class="col-sm-4">
-            <div><input type="file" name="resume" ng-model="supportingData.resume" value="UPLOAD"></div>
-        </div>        
+     <div class="form-group col-sm-6">
+        <label for="resume" class="col-sm-4">Resume:</label>
+        <div class="col-sm-8">
+            <div><input type="file" name="resume" id="resume" ng-model="supportingData.resume" value="UPLOAD"></div>
+        </div>     
+    </div>   
   </div>
   <div class="row">
-        <div class="col-sm-3"><span>Cover Letter:</span></div>
-        <div class="col-sm-4">
-            <div><input type="file" name="coverLetter" ng-model="supportingData.coverLetter" value="UPLOAD"></div>
-        </div>        
+        <div class="form-group col-sm-6">
+        <label for="coverLetter" class="col-sm-4">Cover Letter</label>
+        <div class="col-sm-8">
+            <div><input type="file" name="coverLetter" id="coverLetter" ng-model="supportingData.coverLetter" value="UPLOAD"></div>
+        </div> 
+        </div>       
   </div>
   <div class="row">
-        <div class="col-sm-3"><span>Other Docs:</span></div>
-        <div class="col-sm-4">
+        <div class="form-group col-sm-6">
+        <label for="otherDocs" class="col-sm-4">Other Docs:</label>
+        <div class="col-sm-8">
             <div><input type="file" name="otherDocs" ng-model="supportingData.otherDocs" value="UPLOAD"></div>
-        </div>        
+        </div>  
+        </div>      
   </div>
 </div>
 <div class="internal">

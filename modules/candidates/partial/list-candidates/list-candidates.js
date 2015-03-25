@@ -1,12 +1,4 @@
 angular.module('candidates').controller('ListCandidatesCtrl', function ($scope) {
-
-
-    $scope.displayForm = false;
-
-    $scope.showForm = function(){
-      $scope.displayForm === false ? true : false;
-    };
-
     
     $scope.listAction = {};
     $scope.listActions = [
