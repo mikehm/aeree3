@@ -132,7 +132,7 @@ $scope.addHistory = function(){
          
        return;
 
-       if($scope.empHistory < 1){
+       if(!$scope.empHistory && $scope.empHistory.length === 0){
           $scope.empHistoryVal(true);
         }
   }
@@ -221,7 +221,7 @@ $scope.submitPro = function(){
 
    $scope.$broadcast('show-errors-check-validity');
 
-    if($scope.empHistory.length < 1){
+    if(!$scope.empHistory && $scope.empHistory.length === 0){
         $scope.empHistoryVal(true); 
     }
 
