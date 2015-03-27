@@ -101,13 +101,19 @@ $scope.basicData = {
 
 /* EMPLOYMENT HISTORY DATA */
 
-$scope.empHistoryData = {
+
+
+
+$scope.empHistory = [];
+
+var empId = $scope.empHistory.length + 1;
+
+$scope.empHistoryData = {id: empId, 
   jobTitle:'', company:'',companyLocation:'',companyContact:'', prevStartDate:'', 
   prevEndDate:'', reasonLeaving:''
 };
 
 
-$scope.empHistory = [];
 
 /* Emplyment history validation states */
 
@@ -137,12 +143,13 @@ $scope.addHistory = function(){
         }
   }
 
+    empId++;
 
     $scope.empHistory.push($scope.empHistoryData);  
 
     $scope.empHistoryVal(false);
        
-    $scope.empHistoryData = {
+    $scope.empHistoryData = {id: empId, 
        jobTitle:'', company:'', companyLocation:'', companyContact:'', prevStartDate:'', prevEndDate:'', reasonLeaving:''
     };
 
@@ -150,9 +157,9 @@ $scope.addHistory = function(){
 };
 
 
-$scope.removeHistory = function(item) {
+$scope.removeHistory = function(index) {
 
-    $scope.empHistory.splice(item,1); 
+    $scope.empHistory.splice(index,1); 
 
 };
 

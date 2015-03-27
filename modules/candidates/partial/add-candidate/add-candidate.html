@@ -182,6 +182,7 @@
     </section>
     <div class="row">
         <div class="table-responsive">
+        {{empHistory}}
          <table class="table table-striped table-bordered">
             <thead>
                     <th>Job Title</th>
@@ -190,9 +191,9 @@
                     <th></th>             
             </thead>
             <tbody>
-                 <tr ng-repeat="item in empHistory track by $index">
-                 <td>{{item.jobTitle}}</td>
-                  <td>{{item.company}}</td>
+                 <tr ng-repeat="item in empHistory track by item.id">
+                 <td>{{item.jobTitle}} | {{item.id}}</td>
+                  <td>{{item.company}} | {{item.id}}</td>
                 <td>{{item.prevStartDate |  date:"MMM yyyy"}} - {{item.prevEndDate | date:"MMM yyyy"}}</td>
                 <td><a ng-href="#/add-candidate" ng-click="editHistory($index)">EDIT</a> | 
                 <a ng-href="#/add-candidate" ng-click="removeHistory($index)">DELETE</a></td>
