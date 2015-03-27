@@ -1,4 +1,4 @@
-  angular.module('candidates').controller('AddCandidateCtrl', function ($scope) {
+  angular.module('candidates').controller('AddCandidateCtrl', function ($scope, userproService) {
 /* BASIC DATA */
 
   $scope.profileTab = function(){
@@ -161,15 +161,19 @@ $scope.removeHistory = function(item) {
 
 /* POSITIONS DATA */
 
+
+
 $scope.positions = null;
    $scope.positionConfig = {
-    options: [{value: "Doctor", text: 'Doctor'}, 
-    {value: "Tech Director", text:'Tech Director'},
-    {value: "Lawyer", text:'Lawyer'},
-    {value: "Teacher", text:'Teacher'}
-    
+    options: [{value: "Doctor", text: 'Doctor', id:1}, 
+    {value: "Tech Director", text:'Tech Director', id:2},
+    {value: "Lawyer", text:'Lawyer', id:3},
+    {value: "Teacher", text:'Teacher', id:4}
+  
     ],
+    persist: true,
     create: true,
+    labelField:"id",
     sortField: 'text',
     maxItems: 3,
   }
@@ -180,26 +184,46 @@ $scope.positions = null;
   };
 
 
-
 /* END POSITIONS DATA */
-
 
 /* SKILLS DATA */
 
-
-$scope.skills = null;
-   $scope.skillConfig = {
-    options: [{value: "", text: ''} 
-    ],
-    create: true,
-    sortField: 'text',
-    maxItems: 5,
-  }
   
-  $scope.deleteSkills = function(index){
-        $scope.skills.splice(index, 1);
-
+  $scope.skills = [];
+  var id = $scope.skills.length+1;
+  
+  $scope.skill = {
+    id: id,
+    skill: ''
   };
+
+   $scope.checkSkillsLength = function(){  
+    if($scope.skills.length >= 5){
+      return true;
+    }
+    else { 
+      return false;
+    }  
+  };
+  
+  $scope.add = function(){
+   
+    id++;  
+    $scope.skills.push($scope.skill);  
+    $scope.skill = {
+    id:id, 
+    skill: ''
+  };
+    
+  };
+  
+  $scope.deleteSkill = function(index){
+    
+    $scope.skills.splice(index, 1);
+    
+  };
+
+
 
 /* END SKILLS DATA*/
 
@@ -228,6 +252,7 @@ $scope.submitPro = function(){
     if($scope.profileForm.$valid && ($scope.empHistory.length>0)){
       
       $scope.userProfile.push(
+        {id: $scope.userProfile.length},
         {basicData:$scope.basicData},
         {country: $scope.country},
         {education: $scope.education},
@@ -239,16 +264,7 @@ $scope.submitPro = function(){
         {status:$scope.status},
         {recruiter:$scope.recruiter}
        );
-      /*$scope.userProfile.push({country: $scope.country});
-      $scope.userProfile.push({education: $scope.education});
-      $scope.userProfile.push({employmentHistory:$scope.empHistory});
-      $scope.userProfile.push({positions:$scope.positions});
-      $scope.userProfile.push({skills:$scope.skills});
-      $scope.userProfile.push({supportingData:$scope.supportingData});
-      $scope.userProfile.push({source:$scope.source});
-      $scope.userProfile.push({status:$scope.status});
-      $scope.userProfile.push({recruiter:$scope.recruiter});
-      */
+  
       $scope.user = angular.toJson({userProfile:$scope.userProfile})
       $scope.resetForm() ;
 
@@ -256,7 +272,10 @@ $scope.submitPro = function(){
 
         $scope.show = true;
       }
-  }
+    
+    }
+
+    userproService.save($scope.userProfile);
 
 };
 

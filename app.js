@@ -1,6 +1,6 @@
 angular.module('aseree', ['ngRoute', 'ui.bootstrap', 'ui.utils', 'ui.router', 'ngAnimate', 
     'ngSanitize', 'ui.select', 'ui.grid', 'ngAria', 'ngMaterial', 'ui.router.tabs', 
-    'digitalfondue.dftabmenu', 'ui.bootstrap.showErrors', 'angular-datepicker', 'selectize', 
+    'digitalfondue.dftabmenu', 'ui.bootstrap.showErrors', 'angular-datepicker', 'selectize',
     'candidates', 'jobs']);
 
 angular.module('aseree').config(function($stateProvider, $urlRouterProvider) {

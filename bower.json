@@ -35,7 +35,8 @@
     "angular-datepicker": "~1.0.3",
     "angular-native-picker": "~1.0.4",
     "angular-selectize": "*",
-    "angular-selectize2": "~1.2.1"
+    "angular-selectize2": "~1.2.1",
+    "selectize-ng": "~0.1.0"
   },
   "resolutions": {
     "angular": ">=1",
