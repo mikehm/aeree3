@@ -146,7 +146,8 @@
     <div class="row">
           <div class="form-group col-sm-6">
             <label for="location" class="col-sm-4">Location:</label>
-            <input type="text" class="form-control col-sm-8" id="location" placeholder="Location" name="companyLocation" ng-model="empHistoryData.companyLocation">
+            <input type="text" class="form-control 
+            " id="location" placeholder="Location" name="companyLocation" ng-model="empHistoryData.companyLocation">
         </div>
         <div class="form-group col-sm-6">
             <label for="contact" class="col-sm-4">Contact:</label>
@@ -214,24 +215,28 @@
     <div class="row">
         <div class="form-group col-sm-6">
         <label for="positions" class="col-sm-4">Positions</label>
-        <selectize placeholder= 'Select or enter upto 3 positions...' theme="selectize" class="col-sm-8" id="positions" config="positionConfig" ng-model="positions"></selectize>
+        <select ng-model="selected" ng-options="pos.position for pos in positions"></select>
+        </div>
+        <div class="form-group col-sm-6">
+             
+             <input type="text" class="form-control col-sm-8" ng-model="addedPosition.position" ng-disabled="checkPosLength()" placeholder="Enter upto 3 positions">
+             <button ng-click="addPosition()" class="btn btn-primary col-sm-4 text-center" ng-disabled="checkPosLength()">ADD</button>
         </div>
     </div>
     <div class="row">
       <div class="table-responsive">
-          <table class="table table-bordered">
-                 <thead>
-                    <th class="col-sm-8">Positions</th>
-                    <th class="col-sm-4">Delete</th>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="pos in positions track by $index">
-                        <td>{{pos}}</td>
-                        <td><a href="" ng-click="editPos($index)">EDIT</a> |
-                         <a href="" ng-click="deletePos($index)">Delete</a></td>
-                    </tr>
-                </tbody>
-            </table>
+          <table class="table table-bordered table-striped">
+              <thead>
+                <th>ITEMS</th>
+                <th></th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in selectedPositions track by $index">
+                    <td>{{item.position}} | {{item.id}}</td>
+                    <td><button ng-click="remove($index)">Remove</button></td>
+                </tr>
+            </tbody>
+        </table>
       </div>
     </div>
     <div class="row">
@@ -348,7 +353,6 @@
     <div>
 </div>
 <hr/>
-
 </div>
 </div>
 </div>
@@ -361,7 +365,11 @@
 </div>
 
 </div>
-  {{user}}
+
+
+{{user}}
+
+
 
 </section>
 

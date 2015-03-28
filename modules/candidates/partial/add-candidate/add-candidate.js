@@ -168,27 +168,76 @@ $scope.removeHistory = function(index) {
 
 /* POSITIONS DATA */
 
+   $scope.positions = [
+    
+    {id:1, position: 'CEO'},
+    {id:2, position: 'DIRECTOR'},
+    {id:3, position: 'DOCTOR'}
 
-
-$scope.positions = null;
-   $scope.positionConfig = {
-    options: [{value: "Doctor", text: 'Doctor', id:1}, 
-    {value: "Tech Director", text:'Tech Director', id:2},
-    {value: "Lawyer", text:'Lawyer', id:3},
-    {value: "Teacher", text:'Teacher', id:4}
-  
-    ],
-    persist: true,
-    create: true,
-    labelField:"id",
-    sortField: 'text',
-    maxItems: 3,
-  }
-  
-  $scope.deletePos = function(index){
-        $scope.positions.splice(index, 1);
-  
+  ];
+    
+  $scope.selectedPositions = [];
+  var posId =  $scope.positions.length + 1 + $scope.selectedPositions.length;
+    
+  $scope.addedPosition = {
+      id:posId,
+      position:''
   };
+ 
+  $scope.$watch("selected", function(newVal, oldVal){
+        if(!newVal){
+          return;
+        }
+        for(var i = 0; i < $scope.selectedPositions.length; i++){
+          if( $scope.selectedPositions[i] == newVal) {
+            return;
+        }
+        
+        if($scope.selectedPositions.length >=3){
+          return;
+        }
+
+        }
+        if(newVal != oldVal){
+          $scope.selectedPositions.push(newVal);
+        }
+      
+    });
+    
+  $scope.addPosition = function(){
+
+  if(!$scope.addedPosition.position && $scope.addedPosition.position.length < 1){
+      return;
+    }
+
+    posId++;
+    $scope.selectedPositions.push($scope.addedPosition);
+    
+      $scope.addedPosition = {
+          id:posId,
+          position:''
+      };
+  };
+    
+  $scope.remove = function(index){
+      $scope.selectedPositions.splice(index, 1)
+  };
+
+  $scope.checkPosLength = function(){
+    
+  if($scope.selectedPositions.length >= 3){
+      return true;
+     }
+  else {
+      return false;
+    }
+    
+    
+  };
+
+
+
+
 
 
 /* END POSITIONS DATA */
@@ -246,7 +295,9 @@ $scope.supportingData = {
 
 /* SUBMIT USER PROFILE*/
 
+
 $scope.userProfile = [];
+$scope.userId = 0;
 
 $scope.submitPro = function(){
 
@@ -257,9 +308,11 @@ $scope.submitPro = function(){
     }
 
     if($scope.profileForm.$valid && ($scope.empHistory.length>0)){
-      
+    
+      $scope.userId++;
+
       $scope.userProfile.push(
-        {id: $scope.userProfile.length},
+        {id: $scope.userId},
         {basicData:$scope.basicData},
         {country: $scope.country},
         {education: $scope.education},
@@ -271,12 +324,11 @@ $scope.submitPro = function(){
         {status:$scope.status},
         {recruiter:$scope.recruiter}
        );
-  
-      $scope.user = angular.toJson({userProfile:$scope.userProfile})
+
+      $scope.user = angular.toJson({userProfile:$scope.userProfile});
+
       $scope.resetForm() ;
-
-      if($scope.historyForm.$pristine){
-
+        if($scope.historyForm.$pristine){
         $scope.show = true;
       }
     
