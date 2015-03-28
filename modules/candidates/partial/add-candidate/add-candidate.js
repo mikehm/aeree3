@@ -317,7 +317,7 @@ $scope.submitPro = function(){
         {country: $scope.country},
         {education: $scope.education},
         {employmentHistory:$scope.empHistory},
-        {positions:$scope.positions}, 
+        {positions:$scope.selectedPositions}, 
         {skills:$scope.skills},
         {supportingData:$scope.supportingData},
         {source:$scope.source},
@@ -334,8 +334,6 @@ $scope.submitPro = function(){
     
     }
 
-    userproService.save($scope.userProfile);
-
 };
 
 /* RESET USER PROFILE FORM */
@@ -346,7 +344,7 @@ $scope.resetForm = function(){
     $scope.country = "";
     $scope.education = "";
     $scope.empHistory = [];
-    $scope.positions = [];
+    $scope.selectedPositions = [];
     $scope.skills = [];
     $scope.source = "";
     $scope.status = "";
