@@ -1,4 +1,4 @@
-  angular.module('candidates').controller('AddCandidateCtrl', function ($scope, userproService) {
+  angular.module('candidates').controller('AddCandidateCtrl', function ($scope) {
 /* BASIC DATA */
 
   $scope.profileTab = function(){
@@ -168,7 +168,7 @@ $scope.removeHistory = function(index) {
 
 /* POSITIONS DATA */
 
-   $scope.positions = [
+  $scope.positions = [
     
     {id:1, position: 'CEO'},
     {id:2, position: 'DIRECTOR'},
@@ -236,20 +236,16 @@ $scope.removeHistory = function(index) {
   };
 
 
-
-
-
-
 /* END POSITIONS DATA */
 
 /* SKILLS DATA */
 
   
   $scope.skills = [];
-  var id = $scope.skills.length+1;
+  var skillId = $scope.skills.length+1;
   
   $scope.skill = {
-    id: id,
+    id: skillId,
     skill: ''
   };
 
@@ -264,10 +260,14 @@ $scope.removeHistory = function(index) {
   
   $scope.add = function(){
    
-    id++;  
+    if(!$scope.skill.skill && $scope.skill.skill.length < 1){
+      return;
+    }
+
+    skillId++;  
     $scope.skills.push($scope.skill);  
     $scope.skill = {
-    id:id, 
+    id:skillId, 
     skill: ''
   };
     
