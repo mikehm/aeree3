@@ -18,7 +18,7 @@ $scope.positions = null;
     labelField:"id",
     sortField: 'text',
     maxItems: 3,
-  }
+  };
 
  $scope.anotherCategory = null;
    $scope.another_categoryConfig = {
@@ -33,7 +33,7 @@ $scope.positions = null;
     labelField:"id",
     sortField: 'text',
     maxItems: 3,
-  }
+  };
 
 
 });

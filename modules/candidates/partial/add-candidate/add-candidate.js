@@ -42,7 +42,7 @@ $scope.basicData = {
     create: true,
     sortField: 'text',
     maxItems: 1,
-  }
+  };
   $scope.education = null;
    $scope.educationConfig = {
     options: [{value: "Diploma", text: 'Diploma'}, 
@@ -54,21 +54,18 @@ $scope.basicData = {
     create: true,
     sortField: 'text',
     maxItems: 1,
-  }
-
-
+  };
   $scope.source = null;
    $scope.sourceConfig = {
     options: [{value: "Online", text: 'Online'}, 
     {value: "walk-in", text:'Walk-In'},
     {value: "Email", text:'Email'},
     {value: "Fax", text:'Fax'}
-    
     ],
     create: true,
     sortField: 'text',
     maxItems: 1,
-  }
+  };
 
    $scope.status = null;
    $scope.statusConfig = {
@@ -80,7 +77,7 @@ $scope.basicData = {
     create: true,
     sortField: 'text',
     maxItems: 1,
-  }
+  };
   
    $scope.recruiter = null;
    $scope.recruiterConfig = {
@@ -93,30 +90,20 @@ $scope.basicData = {
     create: true,
     sortField: 'text',
     maxItems: 1,
-  }
-
-
+  };
 
 /* END DATA ENTERED VIA SELECT INPUT*/
 
 /* EMPLOYMENT HISTORY DATA */
 
-
-
-
 $scope.empHistory = [];
-
 var empId = $scope.empHistory.length + 1;
-
 $scope.empHistoryData = {id: empId, 
   jobTitle:'', company:'',companyLocation:'',companyContact:'', prevStartDate:'', 
   prevEndDate:'', reasonLeaving:''
 };
 
-
-
 /* Emplyment history validation states */
-
 $scope.empHistoryVal = function(bool){
 
         $scope.jobRequired = bool;
@@ -124,11 +111,11 @@ $scope.empHistoryVal = function(bool){
         $scope.startRequired = bool;
         $scope.endRequired = bool;
 
-}
+};
 
 $scope.addHistory = function(){
 
-
+  
   if(!$scope.empHistoryData.jobTitle || 
      !$scope.empHistoryData.company ||
      !$scope.empHistoryData.prevEndDate ||
@@ -137,21 +124,19 @@ $scope.addHistory = function(){
       $scope.empHistoryVal(true);
          
        return;
+  }
 
-       if(!$scope.empHistory && $scope.empHistory.length === 0){
+  if(!$scope.empHistory && $scope.empHistory.length === 0){
           $scope.empHistoryVal(true);
-        }
   }
 
     empId++;
-
     $scope.empHistory.push($scope.empHistoryData);  
-
     $scope.empHistoryVal(false);
-       
     $scope.empHistoryData = {id: empId, 
-       jobTitle:'', company:'', companyLocation:'', companyContact:'', prevStartDate:'', prevEndDate:'', reasonLeaving:''
-    };
+       jobTitle:'', company:'', companyLocation:'', companyContact:'', 
+       prevStartDate:'', prevEndDate:'', reasonLeaving:''
+  };
 
 
 };
@@ -189,7 +174,7 @@ $scope.removeHistory = function(index) {
           return;
         }
         for(var i = 0; i < $scope.selectedPositions.length; i++){
-          if( $scope.selectedPositions[i] == newVal) {
+          if( $scope.selectedPositions[i] === newVal) {
             return;
         }
         
@@ -198,7 +183,7 @@ $scope.removeHistory = function(index) {
         }
 
         }
-        if(newVal != oldVal){
+        if(newVal !== oldVal){
           $scope.selectedPositions.push(newVal);
         }
       
@@ -206,35 +191,27 @@ $scope.removeHistory = function(index) {
     
   $scope.addPosition = function(){
 
-  if(!$scope.addedPosition.position && $scope.addedPosition.position.length < 1){
+    if(!$scope.addedPosition.position && $scope.addedPosition.position.length < 1){
       return;
     }
-
     posId++;
-    $scope.selectedPositions.push($scope.addedPosition);
-    
+    $scope.selectedPositions.push($scope.addedPosition);    
       $scope.addedPosition = {
           id:posId,
           position:''
       };
   };
-    
   $scope.remove = function(index){
-      $scope.selectedPositions.splice(index, 1)
+      $scope.selectedPositions.splice(index, 1);
   };
-
-  $scope.checkPosLength = function(){
-    
+  $scope.checkPosLength = function(){    
   if($scope.selectedPositions.length >= 3){
       return true;
      }
   else {
       return false;
     }
-    
-    
   };
-
 
 /* END POSITIONS DATA */
 
@@ -303,7 +280,7 @@ $scope.submitPro = function(){
 
    $scope.$broadcast('show-errors-check-validity');
 
-    if(!$scope.empHistory && $scope.empHistory.length === 0){
+    if($scope.empHistory.length === 0){
         $scope.empHistoryVal(true); 
     }
 

@@ -16,7 +16,7 @@ angular.module('candidates').controller('ListCandidatesCtrl', function ($scope) 
     labelField:"id",
     sortField: 'text',
     maxItems: 3,
-  }
+  };
 
  $scope.anotherCategory = null;
    $scope.another_categoryConfig = {
@@ -31,7 +31,7 @@ angular.module('candidates').controller('ListCandidatesCtrl', function ($scope) 
     labelField:"id",
     sortField: 'text',
     maxItems: 3,
-  }
+  };
 
 
 });
