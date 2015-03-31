@@ -200,15 +200,15 @@ $scope.removeHistory = function(index) {
           id:posId,
           position:''
       };
-  };
-  $scope.remove = function(index){
+    };
+    $scope.remove = function(index){
       $scope.selectedPositions.splice(index, 1);
-  };
-  $scope.checkPosLength = function(){    
-  if($scope.selectedPositions.length >= 3){
+    };
+    $scope.checkPosLength = function(){    
+     if($scope.selectedPositions.length >= 3){
       return true;
      }
-  else {
+    else {
       return false;
     }
   };
@@ -282,6 +282,10 @@ $scope.submitPro = function(){
 
     if($scope.empHistory.length === 0){
         $scope.empHistoryVal(true); 
+    }
+
+    if($scope.profileForm.email.$invalid){
+      return;
     }
 
     if($scope.profileForm.$valid && ($scope.empHistory.length>0)){
