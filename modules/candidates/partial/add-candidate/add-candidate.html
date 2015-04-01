@@ -109,7 +109,7 @@
         <p class="pull-right col-sm-6 text-right" style="font-style: italic">Enter Higest Level of Education</p>
     </div>
     <div class="row">
-        <div class="form-group col-sm-6" show-errors='{showSuccess: true}'>
+        <div class="form-group col-sm-6" >
             <label for="education" class="col-sm-4 required-field">Highest Level:</label>
          <selectize placeholder='Select an education level...' id="education" name="education" config="educationConfig" ng ng-model="education" class="col-sm-8" style="width:220px;" ng-required="true"></selectize>
             <p class="help-block col-sm-8 col-sm-offset-4" ng-if="profileForm.education.$error.required"><small>Highest Level is required.</small></p>
