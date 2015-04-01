@@ -1,7 +1,7 @@
 angular.module('candidates').controller('ListCandidatesCtrl', function ($scope) {
   
-  $scope.name = '';
-  $scope.location = '';  
+  $scope.name = 'Mike';
+  $scope.location = "Addis";  
   
  $scope.positions = null;
    $scope.positionConfig = {

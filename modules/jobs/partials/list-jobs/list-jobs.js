@@ -1,9 +1,4 @@
-angular.module('jobs').controller('ListJobsCtrl',function($scope, userproService){
-
-	$scope.data = userproService.userProfile;
-
-	console.log($scope.data);
-
+angular.module('jobs').controller('ListJobsCtrl',function($scope){
 
 $scope.positions = null;
    $scope.positionConfig = {
