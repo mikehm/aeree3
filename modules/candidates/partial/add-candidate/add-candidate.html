@@ -4,16 +4,15 @@
   <!--Basic PROFILE -->
    <div class="basic_profile">
     <ul class="nav nav-tabs nav-justified">
-        <li ng-click="profileTab()" class="{{active1}} "><a ui-sref="#/add-candidate">PROFILE</a>
+        <li my-active-tabs class="active"><a ui-sref="#/add-candidate">PROFILE</a>
         </li>
-        <li ng-click="passwordTab()" class="{{active2}}"><a ui-sref="#/password">PASSWORD</a>
+        <li my-active-tabs><a ui-sref="#/password">PASSWORD</a>
         </li>
-        <li ng-click="jobsTab()" class="{{active3}}"><a ui-sref="#/jobs">JOBS</a>
+        <li my-active-tabs><a ui-sref="#/jobs">JOBS</a>
         </li>
     </ul>
     <form name="profileForm" class="form-inline" ng-submit="submitPro()"
-    novalidate>
-
+    novalidate>    
     <div class="full-form">
     <div class="profile-form">
     <div class="row">

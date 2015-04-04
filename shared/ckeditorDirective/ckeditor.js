@@ -24,3 +24,5 @@ angular.module('aseree').directive('ckEditor',function () {
         }
     };
 });
+
+
