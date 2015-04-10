@@ -170,7 +170,7 @@
       
     </div>
      <div class="row text-center">
-          <a type="button" class="btn btn-primary" ng-href="" ng-click="addHistory()">ADD</a>
+          <a type="button" class="btn btn-success add-button" ng-href="" ng-click="addHistory()">ADD</a>
       </div>
     </section>
     <div class="row">
@@ -212,8 +212,9 @@
         <div class="form-group col-sm-6">
              
              <input type="text" class="form-control col-sm-8" ng-model="addedPosition.position" ng-disabled="checkPosLength()" placeholder="Enter upto 3 positions">
+            
              <div class="col-sm-4 text-center">
-                 <button type="button" ng-click="addPosition()" class="btn btn-primary text-center" ng-disabled="checkPosLength()">ADD</button>
+                 <button type="button" ng-click="addPosition()"  id="added-pos-button"  class="btn btn-success add-button text-center" ng-disabled="checkPosLength()">ADD</button>
              </div>
              
         </div>
@@ -227,8 +228,8 @@
             </thead>
             <tbody>
                 <tr ng-repeat="item in selectedPositions track by $index">
-                    <td>{{item.position}} | {{item.id}}</td>
-                    <td><button ng-click="remove($index)">Remove</button></td>
+                    <td class="text-center">{{item.position}} | {{item.id}}</td>
+                    <td class="text-center"><button class="btn btn-danger" ng-click="remove($index)">Remove</button></td>
                 </tr>
             </tbody>
         </table>
@@ -241,7 +242,7 @@
             </div>
             <div class="form-group col-sm-6">
                 <label for="expected-salary" class="col-sm-4">Expected Salary:</label>
-                <input type="text" class="form-control col-sm-8" id="expected-salary" ng-model="basicData.salary" placeholder="Expected Salary">
+                <input type="number" class="form-control col-sm-8" id="expected-salary" ng-model="basicData.salary" placeholder="Expected Salary">
             </div>
     </div>
 </div>
@@ -258,8 +259,8 @@
         <label for="skills" class="col-sm-4">Skills</label>
         <input type="text" class="form-control col-sm-8" ng-model="skill.skill" placeholder="Enter upto 5 skills">
     </div>  
-     <div class="form-group col-sm-6">
-       <button type="button" class="btn btn-primary"  ng-disabled = "checkSkillsLength()"  
+     <div class="form-group col-sm-6 text-center">
+       <button type="button" class="btn btn-success add-button"  ng-disabled = "checkSkillsLength()"  
         ng-click="add()">ADD</button>
     </div>    
     </div>       
@@ -272,9 +273,9 @@
             </thead>
             <tbody>
                 <tr ng-repeat="s in skills track by s.id">
-                    <td>{{s.skill}}</td>
-                    <td><a href="" type="button" ng-click="editSkill()">EDIT</a>
-                | <a href="" type="button" ng-click="deleteSkill($index)">DELETE</a>
+                    <td class="text-center">{{s.skill}}</td>
+                    <td class="text-center"><a href="" type="button" class="btn btn-primary" ng-click="editSkill()">EDIT</a>
+                 <a href="" type="button" class="btn btn-danger" ng-click="deleteSkill($index)">DELETE</a>
                     </td>
                 </tr>
             </tbody>
@@ -353,8 +354,8 @@
 </div>
 
 <div class="add-profile text-center">
-    <button type="submit" class="btn btn-success">SAVE</button>
-    <button type="reset"  class="btn btn-danger" ng-click="resetForm()">CANCEL</button>
+    <button type="submit" class="btn btn-success submit-button">SAVE</button>
+    <button type="reset"  class="btn btn-danger cancel-button" ng-click="resetForm()">CANCEL</button>
 </div> 
 </form>
 </div>
