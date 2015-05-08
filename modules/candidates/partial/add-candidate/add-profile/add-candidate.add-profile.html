@@ -165,7 +165,9 @@
             <label class="col-sm-4" for="reason">Reason for Leaving: </label>
         </div> 
         <div class="col-sm-8">
-            <textarea id="reason" name="reasonLeaving" data-ng-model="empHistoryData.reasonLeaving" data-ck-editor></textarea>
+            <!--<textarea id="reason" name="reasonLeaving" data-ng-model="empHistoryData.reasonLeaving" data-ck-editor></textarea>-->
+         <text-angular ta-toolbar="[['h1','h2','h3', 'pre', 'quote'],['bold','italics'], ['ul', 'ol', 'redo', 'undo', 'clear']]" ng-model="empHistoryData.reasonLeaving" class="tex-angular"></text-angular>
+
         </div>
       
     </div>
